@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrusel Dress Code</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #f7eee2;
+      font-family: 'Cormorant Garamond', serif;
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .ideas-section {
+      width: 100%;
+      max-width: 1200px;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    .ideas-title {
+      font-size: 2.2rem;
+      color: #3a3835;
+      font-weight: 400;
+      line-height: 1.2;
+      min-width: 220px;
+    }
+    .carousel-container {
+      position: relative;
+      flex: 1;
+      overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      gap: 15px;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      padding: 10px 5px;
+    }
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+    .carousel-item {
+      flex: 0 0 calc(25% - 12px);
+      min-width: 160px;
+      height: 280px;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+    .carousel-item:hover {
+      transform: translateY(-4px);
+    }
+    .carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #c8a870;
+      color: #8c6d37;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      z-index: 10;
+      transition: all 0.2s ease;
+    }
+    .nav-btn:hover {
+      background: #c8a870;
+      color: #ffffff;
+    }
+    .nav-btn.prev { left: 5px; }
+    .nav-btn.next { right: 5px; }
+
+    @media (max-width: 768px) {
+      .ideas-section {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .carousel-item {
+        flex: 0 0 calc(50% - 10px);
+        height: 230px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="ideas-section">
+    <div class="ideas-title">
+      Aquí te dejamos<br>algunas ideas:
+    </div>
+
+    <div class="carousel-container">
+      <button class="nav-btn prev" onclick="scrollCarousel(-1)">&#10094;</button>
+      
+      <div class="carousel-track" id="track">
+        <div class="carousel-item"><img src="https://i.postimg.cc/w1zmbQ3w/203bcd0d79ad8c20ecbb27cdbdc87dca.jpg" alt="Idea 1"></div>
+        <div class="carousel-item"><img src="https://i.postimg.cc/dh9yMZT2/d2f53cf8d99f0c5bb81337700e92aa2f.jpg" alt="Idea 2"></div>
+        <div class="carousel-item"><img src="https://i.postimg.cc/DScXV4bq/images.jpg" alt="Idea 3"></div>
+        <div class="carousel-item"><img src="https://i.postimg.cc/3khvbFW9/images-(1).jpg" alt="Idea 4"></div>
+        <div class="carousel-item"><img src="https://i.postimg.cc/qNr3Zxgj/images-(2).jpg" alt="Idea 5"></div>
+        <div class="carousel-item"><img src="https://i.postimg.cc/4YG9FQnP/images-(3).jpg" alt="Idea 6"></div>
+        <div class="carousel-item"><img src="https://i.postimg.cc/CR0q6sdr/images-(4).jpg" alt="Idea 7"></div>
+        <div class="carousel-item"><img src="https://i.postimg.cc/N9RtVmKj/images-(6).jpg" alt="Idea 8"></div>
+        <div class="carousel-item"><img src="https://i.postimg.cc/2bnYJh15/images-(7).jpg" alt="Idea 9"></div>
+        <div class="carousel-item"><img src="https://i.postimg.cc/phKv7zmV/images-(8).jpg" alt="Idea 10"></div>
+      </div>
+
+      <button class="nav-btn next" onclick="scrollCarousel(1)">&#10095;</button>
+    </div>
+  </section>
+
+  <script>
+    function scrollCarousel(direction) {
+      const track = document.getElementById('track');
+      const itemWidth = track.querySelector('.carousel-item').offsetWidth + 15;
+      track.scrollBy({
+        left: direction * itemWidth * 2,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+
+</body>
+</html>
